@@ -1,34 +1,34 @@
 # Document Forensics
 
-Outil d'analyse forensique de documents Office (DOCX) et PDF. Extrait les metadonnees internes, detecte les anomalies et genere des rapports detailles en francais.
+Outil d'analyse forensique de documents Office (DOCX) et PDF. Extrait les métadonnées internes, détecte les anomalies et génère des rapports détaillés en français.
 
-## Fonctionnalites
+## Fonctionnalités
 
 ### Analyse DOCX (via XML interne)
-- **Metadonnees Dublin Core** (core.xml) : createur, modificateur, dates de creation/modification, numero de revision
-- **Proprietes etendues** (app.xml) : application, version, modele, temps d'edition cumule, statistiques (pages, mots, caracteres)
-- **RSID** (Revision Save IDs) : identifiants de sessions d'edition pour tracer l'historique et detecter les copies
+- **Métadonnées Dublin Core** (core.xml) : créateur, modificateur, dates de création/modification, numéro de révision
+- **Propriétés étendues** (app.xml) : application, version, modèle, temps d'édition cumulé, statistiques (pages, mots, caractères)
+- **RSID** (Revision Save IDs) : identifiants de sessions d'édition pour tracer l'historique et détecter les copies
 - **Identifiants de document** (w14/w15) : preuve de copie entre fichiers
-- **Medias embarques**, liens externes, suivi des modifications
+- **Médias embarqués**, liens externes, suivi des modifications
 
-### Analyse PDF (via metadonnees)
-- Dictionnaire `/Info` : auteur, createur, producteur, dates
-- Metadonnees XMP
+### Analyse PDF (via métadonnées)
+- Dictionnaire `/Info` : auteur, créateur, producteur, dates
+- Métadonnées XMP
 - Structure : nombre d'objets, images, chiffrement
-- Detection du procede de fabrication (export numerique vs scan)
+- Détection du procédé de fabrication (export numérique vs scan)
 
-### Detection d'anomalies
-- **Date du nom de fichier** : compare la date dans le nom du fichier avec les dates reelles des metadonnees
-- **Chronologie DOCX / PDF** : detecte les ecarts temporels entre modification DOCX et creation PDF
-- **Modele commun** : identifie les documents issus du meme fichier source
-- **RSID partages** : analyse les sessions d'edition communes entre documents
-- **Procede de fabrication** : signale les PDF scannes a partir de documents numeriques natifs
-- **Session d'edition en lot** : detecte les modifications groupees sur un court intervalle
+### Détection d'anomalies
+- **Date du nom de fichier** : compare la date dans le nom du fichier avec les dates réelles des métadonnées
+- **Chronologie DOCX / PDF** : détecte les écarts temporels entre modification DOCX et création PDF
+- **Modèle commun** : identifie les documents issus du même fichier source
+- **RSID partagés** : analyse les sessions d'édition communes entre documents
+- **Procédé de fabrication** : signale les PDF scannés à partir de documents numériques natifs
+- **Session d'édition en lot** : détecte les modifications groupées sur un court intervalle
 
 ### Rapports
 - **Terminal** : tableaux riches avec couleurs (via Rich)
 - **Texte** : rapport complet en `.txt`
-- **PDF** : rapport professionnel mis en page avec tableaux, alertes colorees et glossaire
+- **PDF** : rapport professionnel mis en page avec tableaux, alertes colorées et glossaire
 
 ## Installation
 
@@ -41,54 +41,54 @@ uv sync
 ## Utilisation
 
 ```bash
-# Analyser un dossier (par defaut : docs/)
+# Analyser un dossier (par défaut : docs/)
 uv run python forensics.py chemin/vers/dossier/
 
-# Specifier le fichier de sortie
+# Spécifier le fichier de sortie
 uv run python forensics.py chemin/vers/dossier/ -o mon_rapport.txt
 
-# Specifier le chemin du rapport PDF
+# Spécifier le chemin du rapport PDF
 uv run python forensics.py chemin/vers/dossier/ --pdf mon_rapport.pdf
 
 # Analyser un seul fichier
 uv run python forensics.py document.docx
 
-# Desactiver l'affichage terminal enrichi
+# Désactiver l'affichage terminal enrichi
 uv run python forensics.py chemin/ --no-rich
 ```
 
 ## Exemple de rapport
 
-Le rapport genere contient les sections suivantes :
+Le rapport généré contient les sections suivantes :
 
-1. **Synthese des documents** : tableau recapitulatif de tous les fichiers analyses
-2. **Detail des metadonnees** : informations completes pour chaque document
-3. **Analyse croisee des fichiers DOCX** : chronologie d'edition, createurs communs
-4. **Comparaison DOCX / PDF** : delais entre modification et numerisation
-5. **Anomalies et alertes** : classees par severite (haute, moyenne, info)
-6. **Conclusions** : synthese automatique des constats
+1. **Synthèse des documents** : tableau récapitulatif de tous les fichiers analysés
+2. **Détail des métadonnées** : informations complètes pour chaque document
+3. **Analyse croisée des fichiers DOCX** : chronologie d'édition, créateurs communs
+4. **Comparaison DOCX / PDF** : délais entre modification et numérisation
+5. **Anomalies et alertes** : classées par sévérité (haute, moyenne, info)
+6. **Conclusions** : synthèse automatique des constats
 7. **Glossaire** : explication des termes techniques (RSID, Dublin Core, XMP, etc.)
 
-### Niveaux de severite
+### Niveaux de sévérité
 
 | Niveau | Signification |
 |--------|---------------|
-| HAUTE | Incoherence majeure necessitant une investigation |
-| MOYENNE | Ecart notable a examiner |
+| HAUTE | Incohérence majeure nécessitant une investigation |
+| MOYENNE | Écart notable à examiner |
 | INFO | Constat informatif, comportement attendu |
 
 ## Cas d'usage
 
-- **Audit documentaire** : verifier la coherence des metadonnees d'un lot de documents
-- **Investigation** : detecter des falsifications ou antidatages
-- **Conformite** : s'assurer que les documents suivent le workflow attendu
+- **Audit documentaire** : vérifier la cohérence des métadonnées d'un lot de documents
+- **Investigation** : détecter des falsifications ou antidatages
+- **Conformité** : s'assurer que les documents suivent le workflow attendu
 - **Due diligence** : analyser l'historique de production de documents contractuels
 
-## Dependances
+## Dépendances
 
-- [pikepdf](https://github.com/pikepdf/pikepdf) : analyse des metadonnees PDF
+- [pikepdf](https://github.com/pikepdf/pikepdf) : analyse des métadonnées PDF
 - [python-docx](https://github.com/python-openxml/python-docx) : lecture de fichiers DOCX
-- [ReportLab](https://www.reportlab.com/) : generation de rapports PDF
+- [ReportLab](https://www.reportlab.com/) : génération de rapports PDF
 - [Rich](https://github.com/Textualize/rich) : affichage terminal enrichi
 
 ## Licence

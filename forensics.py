@@ -1450,15 +1450,16 @@ def main():
     if not args.no_rich:
         print_rich_report(analyses, anomalies)
 
+    # Nom de base horodaté pour les rapports
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_dir = os.path.dirname(path) if os.path.isfile(path) else path
+
     # Rapport texte
-    output = args.output or os.path.join(
-        os.path.dirname(path) if os.path.isfile(path) else path,
-        f"rapport_forensique_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
-    )
+    output = args.output or os.path.join(output_dir, f"rapport_forensique_{timestamp}.txt")
     generate_report(analyses, anomalies, output)
 
     # Rapport PDF
-    pdf_output = args.pdf or os.path.splitext(output)[0] + ".pdf"
+    pdf_output = args.pdf or os.path.join(output_dir, f"rapport_forensique_{timestamp}.pdf")
     generate_pdf_report(analyses, anomalies, pdf_output)
 
 

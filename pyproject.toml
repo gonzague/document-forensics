@@ -9,6 +9,7 @@ keywords = ["forensics", "docx", "pdf", "metadata", "office"]
 dependencies = [
     "pikepdf>=10.5.0",
     "python-docx>=1.2.0",
+    "pyyaml>=6.0.3",
     "reportlab>=4.4.10",
     "rich>=14.3.3",
 ]

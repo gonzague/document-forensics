@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="Document_Forensics_1200.png" alt="Document Forensics" width="600">
+</p>
+
 # Document Forensics
 
 Outil d'analyse forensique de documents Office (DOCX) et PDF. Extrait les métadonnées internes, détecte les anomalies et génère des rapports détaillés en français.
@@ -53,9 +57,15 @@ uv run python forensics.py chemin/vers/dossier/ --pdf mon_rapport.pdf
 # Analyser un seul fichier
 uv run python forensics.py document.docx
 
+# Rapport en anglais
+uv run python forensics.py chemin/ --lang en
+
 # Désactiver l'affichage terminal enrichi
 uv run python forensics.py chemin/ --no-rich
 ```
+
+> La langue est auto-détectée via `$LANG`. Vous pouvez forcer avec `--lang fr` ou `--lang en`.
+> Pour ajouter une langue, créez un fichier `lang/xx.yml` en suivant le modèle de `lang/fr.yml`.
 
 ## Exemple de rapport
 

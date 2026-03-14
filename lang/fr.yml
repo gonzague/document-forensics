@@ -1,0 +1,168 @@
+# Traductions françaises — Document Forensics
+
+report:
+  title: "Rapport d'analyse forensique documentaire"
+  date_label: "Date du rapport"
+  docs_analyzed: "Documents analysés"
+  end: "FIN DU RAPPORT"
+  generated_by: "Rapport généré automatiquement par Document Forensics"
+
+sections:
+  inventory: "Inventaire des documents"
+  summary: "Synthèse des documents"
+  detail: "Détail des métadonnées"
+  cross_analysis: "Analyse croisée des fichiers DOCX"
+  comparison: "Comparaison DOCX / PDF"
+  anomalies: "Anomalies et alertes"
+  conclusions: "Conclusions"
+  glossary: "Glossaire des termes techniques"
+
+fields:
+  file: "Fichier"
+  type: "Type"
+  size: "Taille"
+  creator: "Créateur"
+  creator_software: "Créateur (logiciel)"
+  original_creator: "Créateur original"
+  last_modifier: "Dernier modificateur"
+  creator_or_software: "Créateur / Logiciel"
+  creation_date: "Date de création"
+  modification_date: "Date de modification"
+  revision: "Révision"
+  revisions: "Révisions"
+  editing_time: "Temps d'édition"
+  application: "Application"
+  template: "Modèle"
+  pages: "Pages"
+  pages_words: "Pages / Mots"
+  words: "Mots"
+  characters: "Caractères"
+  paragraphs: "Paragraphes"
+  lines: "Lignes"
+  doc_security: "Sécurité du document"
+  company: "Société"
+  rsid_sessions: "Sessions d'édition (RSID)"
+  embedded_media: "Médias embarqués"
+  doc_id: "ID document"
+  external_links: "Liens externes"
+  pdf_version: "Version PDF"
+  producer: "Producteur"
+  images: "Images"
+  encrypted: "Chiffré"
+  pdf_objects: "Objets PDF"
+  "yes": "Oui"
+  "no": "Non"
+  na: "N/A"
+  minutes: "minutes"
+  pages_unit: "pages"
+  words_unit: "mots"
+
+cross:
+  common_creator: "Créateur original commun"
+  modifiers: "Modificateurs"
+  editing_timeline: "Chronologie d'édition"
+  revision_label: "Rév."
+  edition_label: "Édition"
+  cumulated_editing: "Temps d'édition cumulé"
+
+comparison:
+  document: "Document"
+  docx_modified: "DOCX modifié"
+  pdf_created: "PDF créé"
+  delay: "Délai"
+  pdf_method: "Méthode PDF"
+  docx_modified_on: "DOCX modifié le"
+  pdf_created_on: "PDF créé le"
+  delay_docx_pdf: "Délai DOCX → PDF"
+  pdf_created_before: "Le PDF a été créé AVANT la dernière modification DOCX ({duration} avant)"
+  pdf_method_label: "Méthode PDF"
+  pdf_producer_label: "Producteur PDF"
+
+severity:
+  haute: "HAUTE"
+  moyenne: "MOYENNE"
+  info: "INFO"
+
+anomalies:
+  no_anomalies: "Aucune anomalie détectée."
+  documents_label: "Document(s)"
+  filename_date:
+    type: "DATE NOM DE FICHIER"
+    detail: "La date dans le nom du fichier ({filename_date}) ne correspond pas à la date réelle de modification ({real_date}). Écart de {days} jours. {direction}"
+    modified_after: "Le document a été modifié bien après la date indiquée dans son nom."
+    modified_before: "Le document a été modifié avant la date indiquée dans son nom."
+  timeline:
+    type: "CHRONOLOGIE"
+    detail: "Écart de {duration} entre la modification du DOCX ({docx_date}) et la création du PDF ({pdf_date})"
+  process:
+    type: "PROCÉDÉ"
+    detail: "Le PDF provient d'un scan ({creator}) alors que le DOCX est un document numérique natif. Le document a probablement été imprimé puis re-scanné (perte de traçabilité numérique)."
+  common_template:
+    type: "MODÈLE COMMUN"
+    detail: "Tous les documents DOCX partagent la même date de création ({date}), indiquant qu'ils proviennent du même modèle de base."
+  author:
+    type: "AUTEUR"
+    detail: "Tous les documents ont le même créateur original : « {creator} ». Ils proviennent du même modèle."
+  editing_pace:
+    type: "RYTHME D'ÉDITION"
+    detail: "Moins d'une minute par révision ({pace:.1f} min/rév.) — {revisions} révisions en {time} minutes. Possibilité de sauvegardes automatiques ou édition par script."
+  shared_rsid:
+    type: "RSID PARTAGÉS"
+    detail: "identifiants de session d'édition (RSID) sont communs à l'ensemble des {count} documents. Cela confirme qu'ils proviennent tous du même fichier source (copie successive du modèle). Détail : {details}."
+  extra_rsid:
+    type: "RSID SUPPLÉMENTAIRES"
+    detail: "{count} RSID supplémentaires partagés au-delà du noyau commun. Ces documents ont probablement été copiés l'un de l'autre (pas directement du modèle)."
+  batch_editing:
+    type: "CHRONOLOGIE"
+    detail: "Tous les documents ont été modifiés dans un intervalle de {duration} (de {start} à {end} le {date}), suggérant une session d'édition en lot."
+  all_docx: "Tous les DOCX"
+
+conclusions:
+  common_template: "Tous les fichiers DOCX proviennent d'un modèle unique créé par « {creator} » le {date}. Les documents ont ensuite été personnalisés individuellement."
+  scan_workflow: "Les fichiers PDF ont été produits par numérisation ({scanners}). Le workflow est : édition DOCX → impression → signature manuscrite → scan PDF. Ce processus introduit une rupture dans la chaîne de traçabilité numérique."
+  single_modifier: "Une seule personne (« {modifier} ») a effectué les modifications sur l'ensemble des documents DOCX."
+  batch_session: "L'ensemble des modifications DOCX a été réalisé en une seule session de travail ({duration})."
+  high_anomalies: "{count} anomalie(s) de sévérité haute détectée(s) nécessitant une investigation approfondie."
+  no_critical: "Aucune anomalie critique détectée. Les métadonnées sont globalement cohérentes avec un processus de production documentaire standard."
+
+duration:
+  seconds: "{n} secondes"
+  minutes: "{n} minutes"
+  hours: "{h}h{m:02d}"
+  days: "{n} jour"
+  days_plural: "{n} jours"
+
+cli:
+  description: "Analyse forensique de documents Office et PDF"
+  path_help: "Dossier ou fichier à analyser (défaut: docs/)"
+  output_help: "Chemin du fichier de rapport texte"
+  pdf_help: "Chemin du fichier de rapport PDF"
+  lang_help: "Langue du rapport (défaut: auto-détection)"
+  no_rich_help: "Désactiver l'affichage enrichi (tableaux, couleurs)"
+  analyzing: "Analyse de {count} fichier(s)..."
+  error_path: "Erreur : chemin introuvable : {path}"
+  error_no_files: "Aucun fichier DOCX ou PDF trouvé dans {path}"
+
+glossary:
+  - term: "RSID (Revision Save ID)"
+    definition: "Identifiant unique généré automatiquement par Microsoft Word à chaque session de sauvegarde. Chaque fois qu'un utilisateur ouvre un document, le modifie et le sauvegarde, un nouveau RSID est ajouté. L'analyse des RSID permet de retracer l'historique d'édition du document et de déterminer si deux documents partagent une origine commune (copiés depuis le même fichier source)."
+  - term: "Métadonnées Dublin Core (core.xml)"
+    definition: "Ensemble de propriétés standardisées stockées dans le fichier interne core.xml d'un document Office. Comprend le créateur original, le dernier modificateur, les dates de création et modification, le numéro de révision, le titre et les mots-clés. Ces données sont souvent invisibles pour l'utilisateur mais constituent une trace forensique précieuse."
+  - term: "Propriétés étendues (app.xml)"
+    definition: "Métadonnées techniques stockées dans app.xml : application utilisée (ex. Microsoft Word), version, modèle de base (template), temps d'édition cumulé, nombre de pages, mots, caractères et paragraphes. Le temps d'édition est le total cumulé de toutes les sessions d'ouverture du document."
+  - term: "Numéro de révision"
+    definition: "Compteur incrémenté par Word à chaque sauvegarde du document. Un numéro élevé par rapport au temps d'édition peut indiquer des sauvegardes fréquentes ou automatiques. Ce chiffre permet d'estimer le nombre de fois où le document a été ouvert et modifié."
+  - term: "Temps d'édition (TotalTime)"
+    definition: "Durée cumulée, en minutes, pendant laquelle le document a été ouvert dans l'application. Ce temps s'additionne à travers toutes les sessions d'édition depuis la création du fichier. Attention : il inclut aussi le temps d'inactivité si le document reste ouvert."
+  - term: "ID document (w14 / w15)"
+    definition: "Identifiant unique attribué au document par Word. Le w14 (Word 2010+) est un identifiant hexadécimal court. Le w15 (Word 2012+) est un GUID complet. Quand deux fichiers partagent le même ID, cela prouve qu'ils ont été copiés depuis le même fichier source — l'identifiant n'est attribué qu'une seule fois, lors de la première création."
+  - term: "Modèle (Template)"
+    definition: "Le fichier modèle (.dotm ou .dotx) utilisé comme base pour créer le document. « Normal.dotm » est le modèle par défaut de Word. Un modèle personnalisé peut indiquer l'utilisation d'un gabarit d'entreprise."
+  - term: "XMP (Extensible Metadata Platform)"
+    definition: "Standard Adobe de métadonnées embarquées dans les fichiers PDF. Contient des informations similaires au Dublin Core (auteur, dates, logiciel) dans un format XML. Certains logiciels ajoutent des métadonnées supplémentaires dans le bloc XMP."
+  - term: "Producteur PDF (Producer)"
+    definition: "Logiciel ayant généré le fichier PDF final. Distinct du « Créateur » (Creator) qui est le logiciel d'origine. Par exemple, un document scanné aura comme Creator le logiciel du scanner et comme Producer le système d'exploitation qui a assemblé le PDF (ex. macOS Quartz PDFContext)."
+  - term: "Créateur PDF (Creator)"
+    definition: "Logiciel ou périphérique ayant initialement produit le contenu. Pour un scan, c'est le modèle du scanner. Pour un export depuis Word, c'est « Microsoft Word ». Cette information permet de déterminer le procédé de fabrication du PDF."
+  - term: "Objets PDF"
+    definition: "Éléments constitutifs internes d'un fichier PDF : pages, polices, images, annotations, formulaires, etc. Un nombre élevé d'objets peut indiquer un document complexe ou modifié plusieurs fois. Chaque modification incrémentale ajoute de nouveaux objets."

@@ -1,0 +1,168 @@
+# English translations — Document Forensics
+
+report:
+  title: "Document Forensic Analysis Report"
+  date_label: "Report date"
+  docs_analyzed: "Documents analyzed"
+  end: "END OF REPORT"
+  generated_by: "Report generated automatically by Document Forensics"
+
+sections:
+  inventory: "Document inventory"
+  summary: "Document summary"
+  detail: "Metadata details"
+  cross_analysis: "DOCX cross-analysis"
+  comparison: "DOCX / PDF comparison"
+  anomalies: "Anomalies and alerts"
+  conclusions: "Conclusions"
+  glossary: "Technical glossary"
+
+fields:
+  file: "File"
+  type: "Type"
+  size: "Size"
+  creator: "Creator"
+  creator_software: "Creator (software)"
+  original_creator: "Original creator"
+  last_modifier: "Last modified by"
+  creator_or_software: "Creator / Software"
+  creation_date: "Creation date"
+  modification_date: "Modification date"
+  revision: "Revision"
+  revisions: "Revisions"
+  editing_time: "Editing time"
+  application: "Application"
+  template: "Template"
+  pages: "Pages"
+  pages_words: "Pages / Words"
+  words: "Words"
+  characters: "Characters"
+  paragraphs: "Paragraphs"
+  lines: "Lines"
+  doc_security: "Document security"
+  company: "Company"
+  rsid_sessions: "Editing sessions (RSID)"
+  embedded_media: "Embedded media"
+  doc_id: "Document ID"
+  external_links: "External links"
+  pdf_version: "PDF version"
+  producer: "Producer"
+  images: "Images"
+  encrypted: "Encrypted"
+  pdf_objects: "PDF objects"
+  "yes": "Yes"
+  "no": "No"
+  na: "N/A"
+  minutes: "minutes"
+  pages_unit: "pages"
+  words_unit: "words"
+
+cross:
+  common_creator: "Common original creator"
+  modifiers: "Modifiers"
+  editing_timeline: "Editing timeline"
+  revision_label: "Rev."
+  edition_label: "Editing"
+  cumulated_editing: "Cumulated editing time"
+
+comparison:
+  document: "Document"
+  docx_modified: "DOCX modified"
+  pdf_created: "PDF created"
+  delay: "Delay"
+  pdf_method: "PDF method"
+  docx_modified_on: "DOCX modified on"
+  pdf_created_on: "PDF created on"
+  delay_docx_pdf: "Delay DOCX → PDF"
+  pdf_created_before: "The PDF was created BEFORE the last DOCX modification ({duration} before)"
+  pdf_method_label: "PDF method"
+  pdf_producer_label: "PDF producer"
+
+severity:
+  haute: "HIGH"
+  moyenne: "MEDIUM"
+  info: "INFO"
+
+anomalies:
+  no_anomalies: "No anomalies detected."
+  documents_label: "Document(s)"
+  filename_date:
+    type: "FILENAME DATE"
+    detail: "The date in the filename ({filename_date}) does not match the actual modification date ({real_date}). Gap of {days} days. {direction}"
+    modified_after: "The document was modified well after the date indicated in its name."
+    modified_before: "The document was modified before the date indicated in its name."
+  timeline:
+    type: "TIMELINE"
+    detail: "Gap of {duration} between DOCX modification ({docx_date}) and PDF creation ({pdf_date})"
+  process:
+    type: "PROCESS"
+    detail: "The PDF comes from a scan ({creator}) while the DOCX is a native digital document. The document was likely printed then re-scanned (loss of digital traceability)."
+  common_template:
+    type: "COMMON TEMPLATE"
+    detail: "All DOCX documents share the same creation date ({date}), indicating they originate from the same base template."
+  author:
+    type: "AUTHOR"
+    detail: "All documents have the same original creator: \"{creator}\". They originate from the same template."
+  editing_pace:
+    type: "EDITING PACE"
+    detail: "Less than one minute per revision ({pace:.1f} min/rev.) — {revisions} revisions in {time} minutes. Possible automatic saves or script-based editing."
+  shared_rsid:
+    type: "SHARED RSID"
+    detail: "editing session identifiers (RSID) are common across all {count} documents. This confirms they all originate from the same source file (successive copies from the template). Details: {details}."
+  extra_rsid:
+    type: "EXTRA RSID"
+    detail: "{count} additional RSIDs shared beyond the common core. These documents were likely copied from one another (not directly from the template)."
+  batch_editing:
+    type: "TIMELINE"
+    detail: "All documents were modified within a {duration} window (from {start} to {end} on {date}), suggesting a batch editing session."
+  all_docx: "All DOCX files"
+
+conclusions:
+  common_template: "All DOCX files originate from a single template created by \"{creator}\" on {date}. The documents were then individually customized."
+  scan_workflow: "PDF files were produced by scanning ({scanners}). The workflow is: DOCX editing → printing → handwritten signature → PDF scan. This process introduces a break in the digital traceability chain."
+  single_modifier: "A single person (\"{modifier}\") made all modifications across all DOCX documents."
+  batch_session: "All DOCX modifications were completed in a single work session ({duration})."
+  high_anomalies: "{count} high-severity anomaly(ies) detected, requiring further investigation."
+  no_critical: "No critical anomalies detected. Metadata is generally consistent with a standard document production process."
+
+duration:
+  seconds: "{n} seconds"
+  minutes: "{n} minutes"
+  hours: "{h}h{m:02d}"
+  days: "{n} day"
+  days_plural: "{n} days"
+
+cli:
+  description: "Forensic analysis of Office and PDF documents"
+  path_help: "Folder or file to analyze (default: docs/)"
+  output_help: "Text report output path"
+  pdf_help: "PDF report output path"
+  lang_help: "Report language (default: auto-detect)"
+  no_rich_help: "Disable rich terminal output (tables, colors)"
+  analyzing: "Analyzing {count} file(s)..."
+  error_path: "Error: path not found: {path}"
+  error_no_files: "No DOCX or PDF files found in {path}"
+
+glossary:
+  - term: "RSID (Revision Save ID)"
+    definition: "Unique identifier automatically generated by Microsoft Word at each save session. Each time a user opens a document, modifies it and saves it, a new RSID is added. RSID analysis helps trace the editing history of a document and determine if two documents share a common origin (copied from the same source file)."
+  - term: "Dublin Core Metadata (core.xml)"
+    definition: "Set of standardized properties stored in the internal core.xml file of an Office document. Includes the original creator, last modifier, creation and modification dates, revision number, title and keywords. This data is often invisible to the user but provides valuable forensic evidence."
+  - term: "Extended Properties (app.xml)"
+    definition: "Technical metadata stored in app.xml: application used (e.g. Microsoft Word), version, base template, cumulative editing time, page count, words, characters and paragraphs. Editing time is the cumulative total across all sessions the document was open."
+  - term: "Revision number"
+    definition: "Counter incremented by Word at each save. A high number relative to editing time may indicate frequent or automatic saves. This number helps estimate how many times the document was opened and modified."
+  - term: "Editing time (TotalTime)"
+    definition: "Cumulative duration, in minutes, during which the document was open in the application. This time accumulates across all editing sessions since the file was created. Note: it also includes idle time if the document remains open."
+  - term: "Document ID (w14 / w15)"
+    definition: "Unique identifier assigned to the document by Word. The w14 (Word 2010+) is a short hexadecimal identifier. The w15 (Word 2012+) is a full GUID. When two files share the same ID, it proves they were copied from the same source file — the identifier is only assigned once, at initial creation."
+  - term: "Template"
+    definition: "The template file (.dotm or .dotx) used as a base to create the document. \"Normal.dotm\" is Word's default template. A custom template may indicate the use of a corporate document template."
+  - term: "XMP (Extensible Metadata Platform)"
+    definition: "Adobe standard for metadata embedded in PDF files. Contains information similar to Dublin Core (author, dates, software) in XML format. Some software adds additional metadata in the XMP block."
+  - term: "PDF Producer"
+    definition: "Software that generated the final PDF file. Distinct from the \"Creator\" which is the originating software. For example, a scanned document will have the scanner software as Creator and the operating system as Producer (e.g. macOS Quartz PDFContext)."
+  - term: "PDF Creator"
+    definition: "Software or device that originally produced the content. For a scan, it's the scanner model. For a Word export, it's \"Microsoft Word\". This information helps determine how the PDF was produced."
+  - term: "PDF Objects"
+    definition: "Internal building blocks of a PDF file: pages, fonts, images, annotations, forms, etc. A high object count may indicate a complex document or one that was modified multiple times. Each incremental modification adds new objects."

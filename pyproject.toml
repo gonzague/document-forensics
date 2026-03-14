@@ -1,0 +1,17 @@
+[project]
+name = "document-forensics"
+version = "0.1.0"
+description = "Outil d'analyse forensique de documents Office (DOCX) et PDF via leurs métadonnées internes"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+keywords = ["forensics", "docx", "pdf", "metadata", "office"]
+dependencies = [
+    "pikepdf>=10.5.0",
+    "python-docx>=1.2.0",
+    "reportlab>=4.4.10",
+    "rich>=14.3.3",
+]
+
+[project.scripts]
+document-forensics = "forensics:main"
